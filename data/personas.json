@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Orpheus",
+    "arcana": "Fool",
+    "level": 1
+  },
+
+  {
+    "name": "Pixie",
+    "arcana": "Magician",
+    "level": 2
+  },
+
+  {
+    "name": "Apsaras",
+    "arcana": "Priestess",
+    "level": 4
+  }
+]

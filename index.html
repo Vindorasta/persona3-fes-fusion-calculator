@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Pengaturan karakter dan tampilan -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Persona 3 FES Fusion Calculator</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- Bagian atas website -->
+    <header>
+      <h1 class="page-title">Persona 3 FES Fusion Calculator</h1>
+
+      <span class="version-badge"> v0.1.0 </span>
+    </header>
+    <!-- Menu navigasi -->
+    <nav>
+      <p>Navigation will be here.</p>
+    </nav>
+
+    <!-- Konten utama -->
+    <main class="app-layout">
+      <aside class="sidebar">
+        <h2>Menu</h2>
+
+        <ul>
+          <li>Home</li>
+          <li>Persona List</li>
+          <li>Skill Database</li>
+          <li>Fusion Calculator</li>
+        </ul>
+      </aside>
+
+      <section class="content">
+        <section id="welcome">
+          <h2 id="welcome-title">Welcome</h2>
+
+          <p id="welcome-text">
+            Persona 3 FES Fusion Calculator is a modern web application for
+            exploring Persona fusion.
+          </p>
+        </section>
+
+        <section id="search-persona">
+          <h2>Search Persona</h2>
+
+          <form id="search-form">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search Persona..."
+            />
+
+            <button id="search-button" type="submit">Search</button>
+          </form>
+
+          <p id="search-result"></p>
+        </section>
+
+        <section id="persona-list">
+          <h2>Persona List Preview</h2>
+
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Arcana</th>
+              <th>Level</th>
+            </tr>
+
+            <tr>
+              <td>Orpheus</td>
+              <td>Fool</td>
+              <td>1</td>
+            </tr>
+
+            <tr>
+              <td>Apsaras</td>
+              <td>Priestess</td>
+              <td>11</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+    </main>
+
+    <!-- Bagian bawah -->
+    <footer>
+      <p>© 2026 Persona 3 FES Fusion Calculator</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

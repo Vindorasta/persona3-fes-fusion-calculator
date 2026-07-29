@@ -1,0 +1,221 @@
+/* ==========================
+   Global Styles
+   ========================== */
+
+body {
+  background-color: #eef6ff;
+  margin: 40px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* ==========================
+   Tag Selector
+   ========================== */
+
+h2 {
+  color: #0066cc;
+}
+
+/* ==========================
+   Class Selector
+   ========================== */
+
+.page-title {
+  color: #003b8e;
+}
+
+/* ==========================
+   ID Selector
+   ========================== */
+
+#welcome {
+  background-color: #ffffff;
+}
+
+/* ==========================
+   Layout
+   ========================== */
+
+body {
+  margin: 40px;
+  font-family: Arial, sans-serif;
+}
+
+/* ==========================
+   Section
+   ========================== */
+
+section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #d6e2f0;
+}
+
+/* ==========================
+   Table
+   ========================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #b0bec5;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #e7f1ff;
+  color: #003b8e;
+}
+
+/* ==========================
+   Search Form
+   ========================== */
+
+form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #d6e2f0;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px 20px;
+  border: 1px solid #0066cc;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+form button:hover {
+  background-color: #003b8e;
+}
+
+/* ==========================
+   Header
+   ========================== */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.version-badge {
+  padding: 6px 12px;
+  background-color: #003b8e;
+  color: white;
+  border-radius: 999px;
+  font-size: 14px;
+
+  transition: 0.3s;
+}
+
+.version-badge:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================
+   Main Layout
+   ========================== */
+
+.app-layout {
+  display: grid;
+
+  grid-template-columns: 220px 1fr;
+
+  gap: 20px;
+}
+
+/* ==========================
+   Sidebar
+   ========================== */
+
+.sidebar {
+  background-color: #ffffff;
+
+  padding: 20px;
+
+  border: 1px solid #d6e2f0;
+}
+
+.sidebar li {
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #e7f1ff;
+}
+
+/* ==========================
+   Content
+   ========================== */
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* ==========================
+   Responsive Design
+   ========================== */
+
+@media (max-width: 768px) {
+  body {
+    margin: 20px;
+  }
+
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .content {
+    order: 1;
+  }
+}
+
+/* ==========================
+   Animation
+   ========================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 0.5s ease;
+}
