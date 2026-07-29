@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Cleave",
+    "type": "Physical",
+    "element": "Slash"
+  },
+  {
+    "id": 2,
+    "name": "Agi",
+    "type": "Magic",
+    "element": "Fire"
+  },
+  {
+    "id": 3,
+    "name": "Bufu",
+    "type": "Magic",
+    "element": "Ice"
+  },
+  {
+    "id": 4,
+    "name": "Zio",
+    "type": "Magic",
+    "element": "Electric"
+  }
+]

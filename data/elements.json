@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Slash",
+    "category": "Physical"
+  },
+  {
+    "id": 2,
+    "name": "Strike",
+    "category": "Physical"
+  },
+  {
+    "id": 3,
+    "name": "Pierce",
+    "category": "Physical"
+  },
+  {
+    "id": 4,
+    "name": "Fire",
+    "category": "Magic"
+  },
+  {
+    "id": 5,
+    "name": "Ice",
+    "category": "Magic"
+  },
+  {
+    "id": 6,
+    "name": "Wind",
+    "category": "Magic"
+  },
+  {
+    "id": 7,
+    "name": "Electric",
+    "category": "Magic"
+  },
+  {
+    "id": 8,
+    "name": "Light",
+    "category": "Other"
+  },
+  {
+    "id": 9,
+    "name": "Dark",
+    "category": "Other"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "arcana1": "Fool",
+    "arcana2": "Magician",
+    "resultArcana": "Priestess"
+  },
+  {
+    "arcana1": "Magician",
+    "arcana2": "Priestess",
+    "resultArcana": "Empress"
+  },
+  {
+    "arcana1": "Fool",
+    "arcana2": "Chariot",
+    "resultArcana": "Strength"
+  }
+]

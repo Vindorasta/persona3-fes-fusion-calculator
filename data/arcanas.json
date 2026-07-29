@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Fool"
+  },
+  {
+    "id": 2,
+    "name": "Magician"
+  },
+  {
+    "id": 3,
+    "name": "Priestess"
+  },
+  {
+    "id": 4,
+    "name": "Empress"
+  },
+  {
+    "id": 5,
+    "name": "Emperor"
+  },
+  {
+    "id": 6,
+    "name": "Lovers"
+  },
+  {
+    "id": 7,
+    "name": "Chariot"
+  }
+]
