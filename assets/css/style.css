@@ -76,12 +76,34 @@ main {
    Footer
 ========================= */
 
-footer {
-  text-align: center;
+/* =========================
+   Footer
+========================= */
 
-  padding: 20px;
-
+.footer {
   background-color: #00183e;
+
+  padding: 40px 20px;
+
+  text-align: center;
+}
+
+.footer-content h3 {
+  font-size: 24px;
+
+  margin-bottom: 10px;
+}
+
+.footer-content p {
+  color: #cccccc;
+
+  margin-bottom: 10px;
+}
+
+.footer .copyright {
+  font-size: 14px;
+
+  color: #888888;
 }
 
 /* =========================
