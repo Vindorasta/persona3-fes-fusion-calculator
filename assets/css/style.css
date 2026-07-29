@@ -20,13 +20,17 @@ body {
    Header
 ========================= */
 
-header {
+/* =========================
+   Navbar
+========================= */
+
+.header {
   background-color: #00183e;
 
-  padding: 20px;
+  padding: 20px 40px;
 }
 
-nav {
+.navbar {
   display: flex;
 
   justify-content: space-between;
@@ -34,18 +38,30 @@ nav {
   align-items: center;
 }
 
-nav ul {
-  display: flex;
-
-  list-style: none;
-
-  gap: 20px;
+.navbar-logo h1 {
+  font-size: 24px;
 }
 
-nav a {
+.navbar-menu {
+  display: flex;
+
+  gap: 25px;
+
+  list-style: none;
+}
+
+.navbar-menu a {
   color: white;
 
   text-decoration: none;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.navbar-menu a:hover {
+  color: #00bbfa;
 }
 
 /* =========================
