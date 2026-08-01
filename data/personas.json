@@ -3,7 +3,11 @@
     "id": 1,
     "name": "Orpheus",
     "arcana": "Fool",
-    "level": 1
+    "level": 1,
+    "strengths": ["Strike"],
+    "weakness": ["Dark"],
+    "description": ["The initial Persona of the Protagonist."],
+    "skillIds": [1]
   },
   {
     "id": 2,
