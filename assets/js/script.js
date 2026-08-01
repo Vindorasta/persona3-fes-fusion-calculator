@@ -268,46 +268,54 @@ function renderFusionResult(resultBox, resultArcana, fusionPersona, skills) {
 
   personaSkills.forEach((skill) => {
     skillHTML += `
-      <li>
+      <span class="skill-badge">
         ${skill.name}
-      </li>
+      </span>
     `;
   });
 
   resultBox.innerHTML = `
 
-    <div class="persona-card fusion-result-card">
-
-      <h2>
-        ${fusionPersona.name}
-      </h2>
+<div class="fusion-result-card">
 
 
-      <p>
-        <strong>Arcana:</strong>
-        ${resultArcana}
-      </p>
+  <h2>
+    ${fusionPersona.name}
+  </h2>
 
 
-      <p>
-        <strong>Level:</strong>
-        ${fusionPersona.level}
-      </p>
+  <div class="fusion-meta">
+
+    <span>
+      Arcana:
+      ${resultArcana}
+    </span>
 
 
-      <p>
-        <strong>Skills:</strong>
-      </p>
+    <span>
+      Level:
+      ${fusionPersona.level}
+    </span>
+
+  </div>
 
 
-      <ul>
-        ${skillHTML || "<li>-</li>"}
-      </ul>
+
+  <h3>
+    Skills
+  </h3>
 
 
-    </div>
+  <div class="skill-list">
 
-  `;
+    ${skillHTML || "<span>-</span>"}
+
+  </div>
+
+
+</div>
+
+`;
 }
 
 function filterPersona(personas, keyword) {
@@ -373,6 +381,10 @@ function setupFilters(personas) {
   const arcanaSelect = document.getElementById("arcana-filter");
 
   const levelSort = document.getElementById("level-sort");
+
+  if (!searchInput || !arcanaSelect || !levelSort) {
+    return;
+  }
 
   function updateList() {
     const filteredPersonas = filterPersonas(
@@ -467,6 +479,76 @@ Promise.all([
     renderPersonaDetail(personas, skills, arcanas);
 
     renderFusionOptions(personas);
+
+    renderPersonaSelector(
+      personas,
+      "search-persona-a",
+      "persona-options-a",
+      "persona-a",
+    );
+
+    renderPersonaSelector(
+      personas,
+      "search-persona-b",
+      "persona-options-b",
+      "persona-b",
+    );
+
+    function renderPersonaSelector(personas, searchId, optionsId, selectId) {
+      const searchInput = document.getElementById(searchId);
+
+      const optionsBox = document.getElementById(optionsId);
+
+      const select = document.getElementById(selectId);
+
+      if (!searchInput || !optionsBox || !select) {
+        return;
+      }
+
+      function renderOptions(keyword = "") {
+        const filtered = personas.filter((persona) =>
+          persona.name.toLowerCase().includes(keyword.toLowerCase()),
+        );
+
+        optionsBox.innerHTML = "";
+
+        filtered.forEach((persona) => {
+          const option = document.createElement("div");
+
+          option.className = "persona-option";
+
+          option.innerHTML = `
+
+        <strong>
+          ${persona.name}
+        </strong>
+
+        <br>
+
+        <small>
+          Level ${persona.level}
+        </small>
+
+      `;
+
+          option.addEventListener("click", () => {
+            searchInput.value = persona.name;
+
+            select.value = persona.id;
+
+            optionsBox.innerHTML = "";
+          });
+
+          optionsBox.appendChild(option);
+        });
+      }
+
+      searchInput.addEventListener("input", () => {
+        renderOptions(searchInput.value);
+      });
+
+      renderOptions();
+    }
 
     setupFusionButton(personas, skills, arcanas, fusionChart);
 

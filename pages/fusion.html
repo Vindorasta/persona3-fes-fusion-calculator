@@ -17,7 +17,15 @@
         <div class="fusion-select">
           <label> Persona A </label>
 
-          <select id="persona-a"></select>
+          <input
+            type="text"
+            id="search-persona-a"
+            placeholder="Search Persona..."
+          />
+
+          <div id="persona-options-a" class="persona-options"></div>
+
+          <select id="persona-a" hidden></select>
         </div>
 
         <div class="fusion-symbol">+</div>
@@ -25,11 +33,21 @@
         <div class="fusion-select">
           <label> Persona B </label>
 
-          <select id="persona-b"></select>
+          <input
+            type="text"
+            id="search-persona-b"
+            placeholder="Search Persona..."
+          />
+
+          <div id="persona-options-b" class="persona-options"></div>
+
+          <select id="persona-b" hidden></select>
         </div>
       </div>
 
       <button id="fusion-button" type="button">Calculate Fusion</button>
+
+      <h2>Fusion Result</h2>
 
       <div id="fusion-result"></div>
     </main>
