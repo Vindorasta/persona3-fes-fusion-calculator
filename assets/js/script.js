@@ -5,6 +5,27 @@ function renderPersonaList(personas) {
     return;
   }
 
+  if (personas.length === 0) {
+    personaList.innerHTML = `
+
+    <div class="empty-state">
+
+      <h3>
+        Persona tidak ditemukan
+      </h3>
+
+      <p>
+        Coba gunakan keyword lain
+        atau ubah filter.
+      </p>
+
+    </div>
+
+  `;
+
+    return;
+  }
+
   let cards = "";
 
   personas.forEach((persona) => {
@@ -154,12 +175,31 @@ function handleFusion(personas, skills, arcanas, fusionChart) {
     arcanas,
   );
 
+  function calculateFusionLevel(personaA, personaB) {
+    const fusionLevel = calculateFusionLevel(personaA, personaB);
+
+    const fusionBonus = 3;
+
+    return averageLevel + fusionBonus;
+  }
+
   if (!result) {
     resultBox.innerHTML = `
+
+    <div class="fusion-error">
+
+      <h3>
+        Fusion Tidak Tersedia
+      </h3>
+
       <p>
-        Fusion tidak ditemukan.
+        Kombinasi Persona ini belum memiliki
+        hasil fusion.
       </p>
-    `;
+
+    </div>
+
+  `;
 
     return;
   }
@@ -199,9 +239,9 @@ function findFusionPersona(
   }
 
   const closestPersona = candidates.reduce((closest, persona) => {
-    const currentDifference = Math.abs(persona.level - averageLevel);
+    const currentDifference = Math.abs(persona.level - fusionLevel);
 
-    const closestDifference = Math.abs(closest.level - averageLevel);
+    const closestDifference = Math.abs(closest.level - fusionLevel);
 
     return currentDifference < closestDifference ? persona : closest;
   });
@@ -269,6 +309,117 @@ function renderFusionResult(resultBox, resultArcana, fusionPersona, skills) {
 
   `;
 }
+
+function filterPersona(personas, keyword) {
+  return personas.filter((persona) => {
+    return persona.name.toLowerCase().includes(keyword.toLowerCase());
+  });
+}
+
+function setupPersonaSearch(personas) {
+  const searchInput = document.getElementById("persona-search");
+
+  if (!searchInput) {
+    return;
+  }
+
+  searchInput.addEventListener("input", () => {
+    const keyword = searchInput.value;
+
+    const filtered = filterPersona(personas, keyword);
+
+    renderPersonaList(
+      filterPersonas(
+        personas,
+        searchInput.value,
+        document.getElementById("arcana-filter").value,
+      ),
+    );
+  });
+}
+
+function setupArcanaFilter(personas, arcanas) {
+  const select = document.getElementById("arcana-filter");
+
+  if (!select) {
+    return;
+  }
+
+  arcanas.forEach((arcana) => {
+    select.innerHTML += `
+      <option value="${arcana.id}">
+        ${arcana.name}
+      </option>
+    `;
+  });
+}
+
+function filterPersonas(personas, keyword, arcanaId) {
+  return personas.filter((persona) => {
+    const matchName = persona.name
+      .toLowerCase()
+      .includes(keyword.toLowerCase());
+
+    const matchArcana =
+      arcanaId === "all" || persona.arcanaId === Number(arcanaId);
+
+    return matchName && matchArcana;
+  });
+}
+
+function setupFilters(personas) {
+  const searchInput = document.getElementById("persona-search");
+
+  const arcanaSelect = document.getElementById("arcana-filter");
+
+  const levelSort = document.getElementById("level-sort");
+
+  function updateList() {
+    const filteredPersonas = filterPersonas(
+      personas,
+      searchInput.value,
+      arcanaSelect.value,
+    );
+
+    const sortedPersonas = sortPersonas(filteredPersonas, levelSort.value);
+
+    renderPersonaList(sortedPersonas);
+  }
+
+  searchInput.addEventListener("input", updateList);
+
+  arcanaSelect.addEventListener("change", updateList);
+
+  levelSort.addEventListener("change", updateList);
+}
+
+function updateList() {
+  const filteredPersonas = filterPersonas(
+    personas,
+    searchInput.value,
+    arcanaSelect.value,
+  );
+
+  const sortedPersonas = sortPersonas(filteredPersonas, levelSort.value);
+
+  renderPersonaList(sortedPersonas);
+}
+
+function sortPersonas(personas, sortType) {
+  const sorted = [...personas];
+
+  if (sortType === "asc") {
+    sorted.sort((a, b) => a.level - b.level);
+  }
+
+  if (sortType === "desc") {
+    sorted.sort((a, b) => b.level - a.level);
+  }
+
+  return sorted;
+}
+
+const levelSort = document.getElementById("level-sort");
 // Menentukan lokasi file JSON berdasarkan halaman yang sedang dibuka
 const isPages = window.location.pathname.includes("/pages/");
 
@@ -317,6 +468,10 @@ Promise.all([
     renderFusionOptions(personas);
 
     setupFusionButton(personas, skills, arcanas, fusionChart);
+
+    setupFilters(personas);
+
+    setupArcanaFilter(personas, arcanas);
   })
   .catch((error) => {
     console.error(error);

@@ -28,5 +28,19 @@
     "arcanaId": 3,
     "level": 4,
     "skillIds": [2]
+  },
+
+  {
+    "id": 5,
+    "name": "Ara Mitama",
+    "arcanaId": 4,
+    "level": 6
+  },
+
+  {
+    "id": 6,
+    "name": "Valkyrie",
+    "arcanaId": 5,
+    "level": 11
   }
 ]
