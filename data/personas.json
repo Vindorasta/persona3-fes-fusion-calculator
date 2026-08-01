@@ -20,5 +20,13 @@
     "name": "Jack Frost",
     "arcanaId": 2,
     "level": 8
+  },
+
+  {
+    "id": 4,
+    "name": "Apsaras",
+    "arcanaId": 3,
+    "level": 4,
+    "skillIds": [2]
   }
 ]
