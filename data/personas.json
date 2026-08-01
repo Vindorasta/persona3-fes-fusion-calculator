@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Orpheus",
-    "arcana": "Fool",
+    "arcanaId": 1,
     "level": 1,
     "strengths": ["Strike"],
     "weakness": ["Dark"],
@@ -12,13 +12,13 @@
   {
     "id": 2,
     "name": "Pixie",
-    "arcana": "Magician",
+    "arcanaId": 2,
     "level": 2
   },
   {
     "id": 3,
     "name": "Jack Frost",
-    "arcana": "Magician",
+    "arcanaId": 2,
     "level": 8
   }
 ]

@@ -26,7 +26,7 @@ function renderPersonaList(personas) {
   personaList.innerHTML = cards;
 }
 
-function renderPersonaDetail(personas, skills) {
+function renderPersonaDetail(personas, skills, arcanas) {
   const personaDetail = document.getElementById("persona-detail");
 
   if (!personaDetail) {
@@ -39,6 +39,9 @@ function renderPersonaDetail(personas, skills) {
   console.log("Persona ID:", personaId);
 
   const selectedPersona = personas.find((persona) => persona.id === personaId);
+  const selectedArcana = arcanas.find(
+    (arcana) => arcana.id === selectedPersona.arcanaId,
+  );
   const personaSkills = skills.filter((skill) =>
     (selectedPersona.skillIds || []).includes(skill.id),
   );
@@ -54,7 +57,7 @@ function renderPersonaDetail(personas, skills) {
     <div class="persona-detail-card">
       <h2>${selectedPersona.name}</h2>
 
-      <p><strong>Arcana:</strong> ${selectedPersona.arcana}</p>
+      <p><strong>Arcana:</strong> ${selectedArcana ? selectedArcana.name : "Unknown"}</p>
 
 <p>
   <strong>Level:</strong>
@@ -72,9 +75,9 @@ function renderPersonaDetail(personas, skills) {
         <li>
           <strong>${skill.name}</strong>
           <br>
-          Type: ${skill.type}
+          Type: ${skill.type || "-"}
           <br>
-          Element: ${skill.element}
+          Element: ${skill.element || "-"}
         </li>
       `,
     )
@@ -91,8 +94,9 @@ const personasPath = isPages ? "../data/personas.json" : "data/personas.json";
 
 const skillsPath = isPages ? "../data/skills.json" : "data/skills.json";
 
+const arcanasPath = isPages ? "../data/arcanas.json" : "data/arcanas.json";
 // Membaca data Persona
-Promise.all([fetch(personasPath), fetch(skillsPath)])
+Promise.all([fetch(personasPath), fetch(skillsPath), fetch(arcanasPath)])
   .then((responses) => {
     responses.forEach((response) => {
       if (!response.ok) {
@@ -102,12 +106,18 @@ Promise.all([fetch(personasPath), fetch(skillsPath)])
 
     return Promise.all(responses.map((response) => response.json()));
   })
-  .then(([personas, skills]) => {
+  .then(([personas, skills, arcanas]) => {
+    console.log("PERSONAS:");
     console.log(personas);
+
+    console.log("SKILLS:");
     console.log(skills);
 
+    console.log("ARCANAS:");
+    console.log(arcanas);
+
     renderPersonaList(personas);
-    renderPersonaDetail(personas, skills);
+    renderPersonaDetail(personas, skills, arcanas);
   })
   .catch((error) => {
     console.error(error);
