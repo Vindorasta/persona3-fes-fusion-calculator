@@ -420,6 +420,7 @@ function sortPersonas(personas, sortType) {
 }
 
 const levelSort = document.getElementById("level-sort");
+
 // Menentukan lokasi file JSON berdasarkan halaman yang sedang dibuka
 const isPages = window.location.pathname.includes("/pages/");
 
