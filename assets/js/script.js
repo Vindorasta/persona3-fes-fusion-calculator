@@ -59,20 +59,27 @@ function renderPersonaDetail(personas) {
 }
 
 // Menentukan lokasi file JSON berdasarkan halaman yang sedang dibuka
-const dataPath = window.location.pathname.includes("/pages/")
-  ? "../data/personas.json"
-  : "data/personas.json";
+const isPages = window.location.pathname.includes("/pages/");
+
+const personasPath = isPages ? "../data/personas.json" : "data/personas.json";
+
+const skillsPath = isPages ? "../data/skills.json" : "data/skills.json";
 
 // Membaca data Persona
-fetch(dataPath)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Gagal memuat data: ${response.status}`);
-    }
+Promise.all([fetch(personasPath), fetch(skillsPath)])
+  .then((responses) => {
+    responses.forEach((response) => {
+      if (!response.ok) {
+        throw new Error(`Gagal memuat data: ${response.status}`);
+      }
+    });
 
-    return response.json();
+    return Promise.all(responses.map((response) => response.json()));
   })
-  .then((personas) => {
+  .then(([personas, skills]) => {
+    console.log(personas);
+    console.log(skills);
+
     renderPersonaList(personas);
     renderPersonaDetail(personas);
   })
