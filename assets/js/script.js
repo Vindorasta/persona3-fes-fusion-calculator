@@ -40,7 +40,7 @@ function renderPersonaDetail(personas, skills) {
 
   const selectedPersona = personas.find((persona) => persona.id === personaId);
   const personaSkills = skills.filter((skill) =>
-    selectedPersona.skillIds.includes(skill.id),
+    (selectedPersona.skillIds || []).includes(skill.id),
   );
 
   if (!selectedPersona) {
@@ -66,7 +66,19 @@ function renderPersonaDetail(personas, skills) {
 </p>
 
 <ul>
-  ${personaSkills.map((skill) => `<li>${skill.name}</li>`).join("")}
+  ${personaSkills
+    .map(
+      (skill) => `
+        <li>
+          <strong>${skill.name}</strong>
+          <br>
+          Type: ${skill.type}
+          <br>
+          Element: ${skill.element}
+        </li>
+      `,
+    )
+    .join("")}
 </ul>
     </div>
   `;
