@@ -123,6 +123,18 @@ function calculateFusion(arcanaA, arcanaB, fusionChart) {
   return fusionResult.resultArcana;
 }
 
+function checkSpecialFusion(personaA, personaB, specialFusion) {
+  const selectedNames = [personaA.name, personaB.name];
+
+  const result = specialFusion.find((fusion) => {
+    return fusion.materials.every((material) =>
+      selectedNames.includes(material),
+    );
+  });
+
+  return result || null;
+}
+
 function renderFusionOptions(personas) {
   const selectA = document.getElementById("persona-a");
   const selectB = document.getElementById("persona-b");
@@ -445,12 +457,20 @@ const arcanasPath = isPages ? "../data/arcanas.json" : "data/arcanas.json";
 const fusionChartPath = isPages
   ? "../data/fusionChart.json"
   : "data/fusionChart.json";
+
+const specialFusionPath = isPages
+  ? "../data/specialFusion.json"
+  : "data/specialFusion.json";
+
+console.log("isPages:", isPages);
+console.log("specialFusionPath:", specialFusionPath);
 // Membaca data Persona
 Promise.all([
   fetch(personasPath),
   fetch(skillsPath),
   fetch(arcanasPath),
   fetch(fusionChartPath),
+  fetch(specialFusionPath),
 ])
   .then((responses) => {
     responses.forEach((response) => {
@@ -461,7 +481,7 @@ Promise.all([
 
     return Promise.all(responses.map((response) => response.json()));
   })
-  .then(([personas, skills, arcanas, fusionChart]) => {
+  .then(([personas, skills, arcanas, fusionChart, specialFusion]) => {
     console.log("PERSONAS:");
     console.log(personas);
 
@@ -473,6 +493,9 @@ Promise.all([
 
     console.log("FUSION CHART:");
     console.log(fusionChart);
+
+    console.log("SPECIAL FUSION:");
+    console.log(specialFusion);
 
     console.log(calculateFusion("Fool", "Magician", fusionChart));
     renderPersonaList(personas);
