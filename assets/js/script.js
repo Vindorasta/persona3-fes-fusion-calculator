@@ -26,7 +26,7 @@ function renderPersonaList(personas) {
   personaList.innerHTML = cards;
 }
 
-function renderPersonaDetail(personas) {
+function renderPersonaDetail(personas, skills) {
   const personaDetail = document.getElementById("persona-detail");
 
   if (!personaDetail) {
@@ -39,6 +39,9 @@ function renderPersonaDetail(personas) {
   console.log("Persona ID:", personaId);
 
   const selectedPersona = personas.find((persona) => persona.id === personaId);
+  const personaSkills = skills.filter((skill) =>
+    selectedPersona.skillIds.includes(skill.id),
+  );
 
   if (!selectedPersona) {
     personaDetail.innerHTML = `
@@ -53,7 +56,18 @@ function renderPersonaDetail(personas) {
 
       <p><strong>Arcana:</strong> ${selectedPersona.arcana}</p>
 
-      <p><strong>Level:</strong> ${selectedPersona.level}</p>
+<p>
+  <strong>Level:</strong>
+  ${selectedPersona.level}
+</p>
+
+<p>
+  <strong>Skills:</strong>
+</p>
+
+<ul>
+  ${personaSkills.map((skill) => `<li>${skill.name}</li>`).join("")}
+</ul>
     </div>
   `;
 }
@@ -81,7 +95,7 @@ Promise.all([fetch(personasPath), fetch(skillsPath)])
     console.log(skills);
 
     renderPersonaList(personas);
-    renderPersonaDetail(personas);
+    renderPersonaDetail(personas, skills);
   })
   .catch((error) => {
     console.error(error);
