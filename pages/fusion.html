@@ -13,55 +13,40 @@
     <main class="fusion-page">
       <h1>Persona Fusion Calculator</h1>
 
-      <div class="fusion-mode">
-        <button id="normal-mode">Normal Fusion</button>
+      <div class="fusion-container">
+        <div class="fusion-select">
+          <label> Persona A </label>
 
-        <button id="special-mode">Special Fusion</button>
-      </div>
+          <input
+            type="text"
+            id="search-persona-a"
+            placeholder="Search Persona..."
+          />
 
-      <section id="normal-fusion">
-        <div class="fusion-container">
-          <div class="fusion-select">
-            <label> Persona A </label>
+          <div id="persona-options-a" class="persona-options"></div>
 
-            <input
-              type="text"
-              id="search-persona-a"
-              placeholder="Search Persona..."
-            />
-
-            <div id="persona-options-a" class="persona-options"></div>
-
-            <select id="persona-a" hidden></select>
-          </div>
-
-          <div class="fusion-symbol">+</div>
-
-          <div class="fusion-select">
-            <label> Persona B </label>
-
-            <input
-              type="text"
-              id="search-persona-b"
-              placeholder="Search Persona..."
-            />
-
-            <div id="persona-options-b" class="persona-options"></div>
-
-            <select id="persona-b" hidden></select>
-          </div>
+          <select id="persona-a" hidden></select>
         </div>
 
-        <button id="fusion-button" type="button">Calculate Fusion</button>
-      </section>
+        <div class="fusion-symbol">+</div>
 
-      <section id="special-fusion" style="display: none">
-        <h2>Special Fusion</h2>
+        <div class="fusion-select">
+          <label> Persona B </label>
 
-        <div id="special-materials"></div>
+          <input
+            type="text"
+            id="search-persona-b"
+            placeholder="Search Persona..."
+          />
 
-        <button id="special-fusion-button">Calculate Special Fusion</button>
-      </section>
+          <div id="persona-options-b" class="persona-options"></div>
+
+          <select id="persona-b" hidden></select>
+        </div>
+      </div>
+
+      <button id="fusion-button" type="button">Calculate Fusion</button>
+
       <h2>Fusion Result</h2>
 
       <div id="fusion-result"></div>

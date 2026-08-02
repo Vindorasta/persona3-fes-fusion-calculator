@@ -157,7 +157,7 @@ function renderFusionOptions(personas) {
   selectB.innerHTML = options;
 }
 
-function handleFusion(personas, skills, arcanas, fusionChart, specialFusion) {
+function handleFusion(personas, skills, arcanas, fusionChart) {
   const selectA = document.getElementById("persona-a");
   const selectB = document.getElementById("persona-b");
   const resultBox = document.getElementById("fusion-result");
@@ -219,13 +219,7 @@ function handleFusion(personas, skills, arcanas, fusionChart, specialFusion) {
   renderFusionResult(resultBox, result, fusionPersona, skills);
 }
 
-function setupFusionButton(
-  personas,
-  skills,
-  arcanas,
-  fusionChart,
-  specialFusion,
-) {
+function setupFusionButton(personas, skills, arcanas, fusionChart) {
   const button = document.getElementById("fusion-button");
 
   if (!button) {
@@ -423,32 +417,6 @@ function setupFilters(personas) {
   levelSort.addEventListener("change", updateList);
 }
 
-function setupFusionMode() {
-  const normalButton = document.getElementById("normal-mode");
-
-  const specialButton = document.getElementById("special-mode");
-
-  const normalSection = document.getElementById("normal-fusion");
-
-  const specialSection = document.getElementById("special-fusion");
-
-  if (!normalButton || !specialButton || !normalSection || !specialSection) {
-    return;
-  }
-
-  normalButton.addEventListener("click", () => {
-    normalSection.style.display = "block";
-
-    specialSection.style.display = "none";
-  });
-
-  specialButton.addEventListener("click", () => {
-    normalSection.style.display = "none";
-
-    specialSection.style.display = "block";
-  });
-}
-
 function updateList() {
   const filteredPersonas = filterPersonas(
     personas,
@@ -605,9 +573,7 @@ Promise.all([
       renderOptions();
     }
 
-    setupFusionButton(personas, skills, arcanas, fusionChart, specialFusion);
-
-    setupFusionMode();
+    setupFusionButton(personas, skills, arcanas, fusionChart);
 
     setupFilters(personas);
 
