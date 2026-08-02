@@ -75,37 +75,113 @@ function renderPersonaDetail(personas, skills, arcanas) {
   }
 
   personaDetail.innerHTML = `
-    <div class="persona-detail-card">
-      <h2>${selectedPersona.name}</h2>
+  <div class="persona-detail-card">
 
-      <p><strong>Arcana:</strong> ${selectedArcana ? selectedArcana.name : "Unknown"}</p>
+    <div class="persona-header">
 
-<p>
-  <strong>Level:</strong>
-  ${selectedPersona.level}
-</p>
+      <h2>
+        ${selectedPersona.name}
+      </h2>
 
-<p>
-  <strong>Skills:</strong>
-</p>
+      <span class="arcana-badge">
+        ${selectedArcana ? selectedArcana.name : "Unknown"}
+      </span>
 
-<ul>
-  ${personaSkills
-    .map(
-      (skill) => `
-        <li>
-          <strong>${skill.name}</strong>
-          <br>
-          Type: ${skill.type || "-"}
-          <br>
-          Element: ${skill.element || "-"}
-        </li>
-      `,
-    )
-    .join("")}
-</ul>
     </div>
-  `;
+
+
+    <div class="persona-info">
+
+      <p>
+        <strong>Level:</strong>
+        ${selectedPersona.level}
+      </p>
+
+    </div>
+
+
+    <div class="persona-affinity">
+
+      <h3>
+        Affinity
+      </h3>
+
+
+      <div>
+        <strong>Strength:</strong>
+
+        ${
+          selectedPersona.strengths
+            ?.map((item) => `<span class="skill-badge">${item}</span>`)
+            .join("") || "-"
+        }
+
+      </div>
+
+
+      <div>
+        <strong>Weakness:</strong>
+
+        ${
+          selectedPersona.weakness
+            ?.map((item) => `<span class="skill-badge">${item}</span>`)
+            .join("") || "-"
+        }
+
+      </div>
+
+    </div>
+
+
+
+    <div class="persona-skills">
+
+      <h3>
+        Skills
+      </h3>
+
+
+      <div class="skill-container">
+
+        ${
+          personaSkills
+            .map(
+              (skill) =>
+                `
+                <span class="skill-badge">
+                  ${skill.name}
+                </span>
+                `,
+            )
+            .join("") || "-"
+        }
+
+      </div>
+
+    </div>
+
+
+
+    <div class="persona-description">
+
+      <h3>
+        Description
+      </h3>
+
+
+      <p>
+        ${
+          selectedPersona.description?.join("<br>") ||
+          "No description available."
+        }
+      </p>
+
+
+    </div>
+
+
+  </div>
+`;
 }
 
 function calculateFusion(arcanaA, arcanaB, fusionChart) {
